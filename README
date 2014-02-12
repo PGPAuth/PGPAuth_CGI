@@ -1,4 +1,6 @@
 This is the server-side CGI program to react on requests by the PGPAuth app (http://github.com/LittleFox94/PGPAuth).
+Please report bugs here:
+https://github.com/LittleFox94/PGPAuth/issues
 
 
 Compile-time-requirements:
