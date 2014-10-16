@@ -20,7 +20,7 @@ int main(int argc, char* argv[])
 
 		if(data.length() == 0)
 		{
-			cout << "No data-paramter!";
+			cout << "No data-parameter!";
 		}
 		else
 		{
