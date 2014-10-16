@@ -1,0 +1,33 @@
+= PGPAuth_cgi =
+
+This is the server-side CGI program to react on requests by the PGPAuth app (http://github.com/LittleFox94/PGPAuth).
+Please report bugs here:
+https://github.com/LittleFox94/PGPAuth/issues
+
+== Compile-time-requirements ==
+
+* Gnu CGICC
+* GPGME
+
+== Runtime-requirements ==
+
+* CGI-capable HTTP-server
+* PGPAuth App (see link provided up there)
+
+== Known bugs ==
+
+* only the first signature is checked
+
+== Install ==
+
+* set PGP homedir and the maximum timestamp difference in pgpauth.h.
+* define the actions to be done on open/close in pgpauth.cpp (open() and close()).
+* compile with:
+ g++ main.cpp pgpauth.cpp -o pgpauth_cgi -lcgicc -lgpgme
+* create PGP homedir and give your webserver-account the only access rights (GnuPG checks them)
+* su to webserver-account and fetch/import the keys allowed to do requests (don't forget --homedir)
+* trust the keys allowed to do requests (don't forget --homedir)
+* move pgpauth_cgi binary to CGI-location of your webserver
+* configure PGPAuth app to point to that executable
+* enjoy :)
+* send all bugs to littlefox@fsfe.org (0x97FC6451)
