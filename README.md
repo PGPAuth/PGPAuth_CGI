@@ -1,8 +1,6 @@
 # PGPAuth_cgi
 
-This is the server-side CGI program to react on requests by the PGPAuth app (http://github.com/LittleFox94/PGPAuth).
-Please report bugs here:
-https://github.com/LittleFox94/PGPAuth/issues
+This is the server-side CGI program to react on requests by the PGPAuth apps (https://github.com/PGPAuth).
 
 See this program more as a Proof of Concept and please check it carefully before using it in a productive environment. It is known to work, but isn't audited. If you want to check the code of PGPAuth for security issues, start here.
 
