@@ -11,11 +11,9 @@
 
 #include <gpgme.h>
 
-using namespace std;
-
 void PGPAuthInitialize();
 
-void PGPAuth(string data);
+void PGPAuth(std::string data);
 
 void open();
 
