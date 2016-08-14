@@ -12,8 +12,8 @@ AC_PROG_CXX
 AC_PROG_CC
 
 # Checks for libraries.
-AM_PATH_GPGME(1.5.5)
-CGICC_CHECK_CONFIG
+AC_CHECK_LIB([gpgme], [gpgme_check_version], [], [AC_MSG_ERROR([Please install libgpgme development files.])])
+AC_CHECK_LIB([cgicc], [_ZNK5cgicc5CgiccdeEv], [], [AC_MSG_ERROR([Please install libcgicc development files.])]) # cgicc::Cgicc::operator*()
 
 # Checks for header files.
 
