@@ -1,3 +1,4 @@
+#include <libconfig.h++>
 #include "pgpauth.h"
 
 // Code based on this introduction:
@@ -91,16 +92,14 @@ void PGPAuth(std::string data)
 	if((currentTime - timestamp) > MAX_TIMESTAMP_CHANGE)
 		throw std::exception();
 
-	if(request == "open")
-		open();
-	else if(request == "close")
-		close();
+    libconfig::Config cfg;
+    cfg.readFile(CONFIG_FILE_LOCATION);
+
+	if(request == "open") {
+		system(cfg.lookup("open_command").c_str());
+    }
+	else if(request == "close") {
+		system(cfg.lookup("close_command").c_str());
+    }
 }
 
-void open()
-{
-}
-
-void close()
-{
-}
