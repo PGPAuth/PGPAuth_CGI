@@ -4,9 +4,8 @@
 // Code based on this introduction:
 // http://www.nico.schottelius.org/docs/a-small-introduction-for-using-gpgme/
 
-gpgme_ctx_t _gpgmeContext;
-
-void PGPAuthInitialize()
+PGPAuth::PGPAuth(const char* openCommand, const char* closeCommand)
+    : _openCommand(openCommand), _closeCommand(closeCommand)
 {
 	// needed to initialize multi-threading support by gpgme
 	gpgme_check_version(NULL);
@@ -45,7 +44,7 @@ void PGPAuthInitialize()
 	gpgme_set_armor(_gpgmeContext, 1);
 }
 
-void PGPAuth(std::string data)
+void PGPAuth::parseData(const std::string& data)
 {
 	gpgme_data_t gpgmeSigData;
 	gpgme_data_t gpgmePlainData;
@@ -92,14 +91,11 @@ void PGPAuth(std::string data)
 	if((currentTime - timestamp) > MAX_TIMESTAMP_CHANGE)
 		throw std::exception();
 
-    libconfig::Config cfg;
-    cfg.readFile(CONFIG_FILE_LOCATION);
-
 	if(request == "open") {
-		system(cfg.lookup("open_command").c_str());
+		system(_openCommand);
     }
 	else if(request == "close") {
-		system(cfg.lookup("close_command").c_str());
+		system(_closeCommand);
     }
 }
 

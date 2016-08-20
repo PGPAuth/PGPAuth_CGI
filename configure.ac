@@ -14,6 +14,7 @@ AC_PROG_CC
 
 # Checks for libraries.
 AC_CHECK_LIB([gpgme], [gpgme_check_version], [], [AC_MSG_ERROR([libgpgme not found.])])
+AC_CHECK_LIB([fcgi], [FCGI_Accept], [], [AC_MSG_ERROR([libfcgi not found.])])
 
 PKG_CHECK_MODULES([CGICC], [cgicc >= 3.2.1],,
   AC_MSG_ERROR([libcgicc 3.2.1 or newer not found.])

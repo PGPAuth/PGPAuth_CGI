@@ -11,12 +11,17 @@
 
 #include <gpgme.h>
 
-void PGPAuthInitialize();
+class PGPAuth {
+    public:
+        PGPAuth(const char* openCommand, const char* closeCommand);
 
-void PGPAuth(std::string data);
+        void parseData(const std::string& data);
 
-void open();
+    private:
+        const char* _openCommand;
+        const char* _closeCommand;
 
-void close();
+        gpgme_ctx_t _gpgmeContext;
+};
 
 #endif
