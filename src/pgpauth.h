@@ -13,13 +13,14 @@
 
 class PGPAuth {
     public:
-        PGPAuth(const char* openCommand, const char* closeCommand);
+        PGPAuth(const char* openCommand, const char* closeCommand, const char* homedir, int maxTimestampDifference);
 
         void parseData(const std::string& data);
 
     private:
         const char* _openCommand;
         const char* _closeCommand;
+        int _maxTimestampDifference;
 
         gpgme_ctx_t _gpgmeContext;
 };

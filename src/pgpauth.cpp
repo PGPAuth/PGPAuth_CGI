@@ -4,8 +4,8 @@
 // Code based on this introduction:
 // http://www.nico.schottelius.org/docs/a-small-introduction-for-using-gpgme/
 
-PGPAuth::PGPAuth(const char* openCommand, const char* closeCommand)
-    : _openCommand(openCommand), _closeCommand(closeCommand)
+PGPAuth::PGPAuth(const char* openCommand, const char* closeCommand, const char* homedir, int maxTimestampDifference)
+    : _openCommand(openCommand), _closeCommand(closeCommand), _maxTimestampDifference(maxTimestampDifference)
 {
 	// needed to initialize multi-threading support by gpgme
 	gpgme_check_version(NULL);
@@ -36,8 +36,8 @@ PGPAuth::PGPAuth(const char* openCommand, const char* closeCommand)
 
 	// setting engine info (keystorage and executable)
 	err = gpgme_ctx_set_engine_info (_gpgmeContext, GPGME_PROTOCOL_OpenPGP,
-               enginfo->file_name, GPG_HOME_DIR);
-	if(err != GPG_ERR_NO_ERROR)
+               enginfo->file_name, homedir);
+    if(err != GPG_ERR_NO_ERROR)
 		throw std::exception();
 
 	// setting ASCII-armor
@@ -88,7 +88,7 @@ void PGPAuth::parseData(const std::string& data)
 	time_t timestamp = strtol(tstring.c_str(), NULL, 10);
 	time_t currentTime = time(NULL);
 
-	if((currentTime - timestamp) > MAX_TIMESTAMP_CHANGE)
+	if((currentTime - timestamp) > _maxTimestampDifference)
 		throw std::exception();
 
 	if(request == "open") {

@@ -8,10 +8,12 @@ See this program more as a Proof of Concept and please check it carefully before
 
 * Gnu CGICC
 * GPGME
+* libconfig++
+* libfcgi
 
 ## Runtime-requirements
 
-* CGI-capable HTTP-server
+* FastCGI-capable HTTP-server
 * PGPAuth App (see link provided up there)
 
 ## Known bugs
@@ -20,14 +22,14 @@ See this program more as a Proof of Concept and please check it carefully before
 
 ## Install
 
-* set PGP homedir and the maximum timestamp difference in pgpauth.h.
-* define the actions to be done on open/close in pgpauth.cpp (open() and close()).
-* compile with:
- g++ main.cpp pgpauth.cpp -o pgpauth_cgi -lcgicc -lgpgme
-* create PGP homedir and give your webserver-account the only access rights (GnuPG checks them)
-* su to webserver-account and fetch/import the keys allowed to do requests (don't forget --homedir)
+* create PGP homedir and give your pgpauth-account the only access rights (GnuPG checks them)
+* su to pgpauth-account and fetch/import the keys allowed to do requests (don't forget --homedir)
 * trust the keys allowed to do requests (don't forget --homedir)
-* move pgpauth_cgi binary to CGI-location of your webserver
-* configure PGPAuth app to point to that executable
+* ```./configure && make && sudo make install```
+** use all the flags you like, it's standard autoconf
+* edit the config file
+** path determined by autoconf, depends on the prefix. Default is ```/usr/local/etc/pgpauth_cgi.cfg```
+* configure webserver to connect to pgpauth_cgi via FastCGI
+* configure your system to start pgpauth_cgi at boot automagically
 * enjoy :)
 * send all bugs to littlefox@fsfe.org (0x97FC6451)
