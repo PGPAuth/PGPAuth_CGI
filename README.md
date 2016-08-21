@@ -26,9 +26,9 @@ See this program more as a Proof of Concept and please check it carefully before
 * su to pgpauth-account and fetch/import the keys allowed to do requests (don't forget --homedir)
 * trust the keys allowed to do requests (don't forget --homedir)
 * ```./configure && make && sudo make install```
-** use all the flags you like, it's standard autoconf
+ * use all the flags you like, it's standard autoconf
 * edit the config file
-** path determined by autoconf, depends on the prefix. Default is ```/usr/local/etc/pgpauth_cgi.cfg```
+ * path determined by autoconf, depends on the prefix. Default is ```/usr/local/etc/pgpauth_cgi.cfg```
 * configure webserver to connect to pgpauth_cgi via FastCGI
 * configure your system to start pgpauth_cgi at boot automagically
 * enjoy :)
