@@ -1,5 +1,4 @@
-AM_CXXFLAGS = -std=c++11 --pedantic -Wall -Werror -O2
-AM_LDFLAGS  = -std=c++11
+AM_CXXFLAGS = --pedantic -Wall -Werror -O2
 EXTRA_DIST  = pgpauth_cgi.cfg
 
 bin_PROGRAMS         = pgpauth_cgi
