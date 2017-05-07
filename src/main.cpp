@@ -97,6 +97,8 @@ int main(int argc, char* argv[])
             {
                 std::cerr << "Something went wrong: " << e.what() << std::endl;
             }
+
+            FCGX_Finish_r(&request);
         }
     }
     catch(const libconfig::SettingNotFoundException & e) {
